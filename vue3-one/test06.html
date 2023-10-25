@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+      <template v-for="({title,state},index) in dataList">
+        <li v-if="state === 1">
+          <div>{{title}}</div>
+          <div v-if="state===0">
+            <p>预售</p>
+          </div>
+          <div v-else-if="state===1">
+            <p>发售</p>
+          </div>
+          <div v-else-if="state===2">
+            <p>缺货</p></p></p>
+          </div>
+          <div v-else-if="state===3">
+            <p>停售</p>
+          </div>
+          <div v-else>
+            <p>未知</p>
+          </div>
+        </li>
+      </template>
+      </ul>
+      <!-- <div v-for="(vlue,key,index) in itemObj">
+        <p>{{key}}---{{vlue}}---{{index}}</p>
+      </div> -->
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            dataList: [
+              {
+                title: "小米14",
+                state: 0,
+              },
+              {
+                title: "小米10",
+                state: 1,
+              },
+              {
+                title: "小米9",
+                state: 2,
+              },
+              {
+                title: "小米11",
+                state: 3,
+              },
+            ],
+            itemObj: {
+              name: "haro",
+              age: 18,
+              sex: "male",
+            },
+          };
+        },
+        methods: {},
+      };
+      var app = Vue.createApp(obj).mount("#app");
+    </script>
+  </body>
+</html>

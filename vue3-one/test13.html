@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="mytext" />
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            mytext: "Hello Word!!!",
+          };
+        },
+        //监听器
+        watch: {
+          //   mytext(value, oldValue) {
+          //     console.log(value, oldValue);
+          //   },
+          mytext: "test",
+        },
+        methods: {
+          test() {
+            console.log("test");
+          },
+        },
+      };
+      var app = Vue.createApp(obj).mount("#app");
+    </script>
+  </body>
+</html>

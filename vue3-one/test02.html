@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div :id="testId">{{myname+" NB"}}</div>
+      <div>{{1+2}}</div>
+      <div>{{islogin?"已登录":"未登录"}}</div>
+      <div :class="color" :style="{ color: color }" @click="changeColor">
+        123
+      </div>
+      <input type="text" v-model="desc"/>
+      <button @click="add">add</button>
+      <ul v-for="data,index in dataList">
+        <li>{{data}}<button @click="del(index)">del</button></li>
+      <ul/>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            myname: "haro",
+            islogin: true,
+            testId: "test",
+            color: "red",
+            dataList: ["1", "2", "3"],
+            desc:""
+          };
+        },
+        methods: {
+          changeColor() {
+            this.color = "green";
+          },
+          add(){
+            this.dataList.push(this.desc);
+          },
+          del(index){
+            this.dataList.splice(index, 1);
+          }
+        },
+      };
+      var app = Vue.createApp(obj).mount("#app");
+    </script>
+  </body>
+</html>

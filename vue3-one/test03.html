@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+  </head>
+  <style>
+    .active{
+        background-color: aquamarine;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div v-show="isShow">展示v-show</div>
+      <div v-if="isShow">展示v-if</div>
+      </button><button @click="change">点击</button>
+      <div>
+        <ul v-for="data,index in dataList">
+            <li @click="handler(index)" :class="current===index?'active':''">{{index+" - "+data}}</li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            isShow: false,
+            dataList:["王五","李四","张三"],
+            current:''
+          };
+        },
+        methods: {
+          change() {
+            this.isShow = !this.isShow;
+          },
+          handler(index){
+            this.current = index;
+          }
+        },
+      };
+      var app = Vue.createApp(obj).mount("#app");
+    </script>
+  </body>
+</html>

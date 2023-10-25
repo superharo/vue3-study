@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{mytext}}
+      <input type="text" v-model.lazy="mytext" />
+      <input type="text" v-model.number="age" />
+      <input type="text" v-model.trim="name" />
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            mytext: "abcdefg",
+            age: 1,
+            name: "haro",
+          };
+        },
+        methods: {},
+      };
+      var app = Vue.createApp(obj).mount("#app");
+    </script>
+  </body>
+</html>

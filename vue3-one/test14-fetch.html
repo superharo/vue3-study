@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!--  Fetch -->
+      <!-- axios -->
+      <div>{{mytext}}</div>
+      <button @click="handleClick">点我！！！</button>
+      <ul>
+        <template v-for="(data,index) in dataList" :key="index">
+          <div>
+            <li>{{index}}-----{{data}}</li>
+          </div>
+        </template>
+      </ul>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            mytext: "Hello Word!!!",
+            dataList: [],
+          };
+        },
+        methods: {
+          handleClick() {
+            //基于promise
+            //1-GET
+            fetch("./test.json")
+              .then((res) => res.json())
+              // .then((res) => res.text())
+              // 箭头函数的this 指向外部的this
+              .then((res) => (this.dataList = res.list));
+            //2-POST
+            fetch("http://localhost:3000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({
+                username: "haro",
+                password: "123",
+              }),
+            })
+              .then((res) => res.json())
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((err) => console.log("post请求异常"));
+            //3-PUT
+            fetch("http://localhost:3000/users/5", {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({
+                username: "haro",
+                password: "456",
+              }),
+            })
+              .then((res) => res.json())
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((err) => console.log("PUT请求异常"));
+            //4-DELETE
+            fetch("http://localhost:3000/users/5", {
+              method: "DELETE",
+            })
+              .then((res) => res.json())
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((err) => console.log("DELETE请求异常"));
+          },
+        },
+      };
+      var app = Vue.createApp(obj).mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+    <style>
+      ul {
+        border: 10px solid red;
+      }
+      li {
+        border: 10px solid greenyellow;
+        background-color: aquamarine;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <p>{{count}}</p>
+        <ul @click.self="add">
+          <!-- <li @click.stop="add">11111</li> -->
+          <li>11111</li>
+          <li>22222</li>
+          <li>33333</li>
+        </ul>
+        <form action="" @submit.prevent="handleLogin">
+          <button type="submit">登录</button>
+        </form>
+        <button @click.once="getStar">抽奖</button>
+        <input type="text" @keyup.enter="enter" />
+      </div>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        methods: {
+          add() {
+            this.count++;
+          },
+          handleLogin() {
+            console.log("登录！！！！");
+          },
+          getStar() {
+            console.log("抽奖");
+          },
+          enter(evt) {
+            console.log(evt.target.value);
+          },
+        },
+      };
+      var app = Vue.createApp(obj).mount("#app");
+    </script>
+  </body>
+</html>

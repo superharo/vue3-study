@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+    <style>
+      .active {
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        font-weight: bolder;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div :class="helloClass">Hello Word!!!</div>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            helloClass: {
+              active: true,
+            },
+          };
+        },
+        methods: {},
+      };
+      var app = Vue.createApp(obj).mount("#app");
+    </script>
+  </body>
+</html>

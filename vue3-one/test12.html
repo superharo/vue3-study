@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>欢迎{{changenamem()}}回来</div>
+      <div>欢迎{{changenamem()}}回来</div>
+      <button @click="change">改变</button>
+      <div>欢迎{{changename}}回来</div>
+      <div>欢迎{{changename}}回来</div>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            mytext: "haro",
+          };
+        },
+        //计算属性 提取代码方便维护 同时提供缓存只需要执行一次
+        computed: {
+          changename() {
+            console.log("计算属性");
+            return (
+              this.mytext.substring(0, 1).toUpperCase() +
+              this.mytext.substring(1)
+            );
+          },
+        },
+        methods: {
+          change() {
+            this.mytext = "superh";
+          },
+          changenamem() {
+            console.log("方法");
+            return (
+              this.mytext.substring(0, 1).toUpperCase() +
+              this.mytext.substring(1)
+            );
+          },
+        },
+      };
+      var app = Vue.createApp(obj).mount("#app");
+    </script>
+  </body>
+</html>
